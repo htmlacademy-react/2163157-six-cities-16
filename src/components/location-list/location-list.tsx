@@ -1,5 +1,6 @@
 import CITTIES from '../../const';
 
+// eslint-disable-next-line react/prop-types
 function LocationItem({ city }) {
   return (
     <li className="locations__item">

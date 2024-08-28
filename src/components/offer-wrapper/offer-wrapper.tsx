@@ -1,7 +1,8 @@
 import ReviewsForm from '../reviews-form/reviews-form';
 import OfferInsideList from '../offer-inside-list/offer-inside-list';
+import type { Offer } from '../../mock/mocks';
 
-function PremiumLabel(isPremium : boolean) {
+function PremiumLabel({isPremium} : {isPremium: boolean | undefined}) {
   if (isPremium) {
     return (
       <div className="offer__mark">
@@ -11,7 +12,7 @@ function PremiumLabel(isPremium : boolean) {
   }
 }
 
-function FavoriteLabel(isFavorite : boolean) {
+function FavoriteLabel({isFavorite} : {isFavorite : boolean | undefined}) {
   if (isFavorite) {
     return (
       <button className="offer__bookmark-button button" type="button">
@@ -33,33 +34,18 @@ function FavoriteLabel(isFavorite : boolean) {
 }
 
 type OfferProps = {
-  offer : [];
-  title : string;
-  type : string;
-  price : number;
-  isPremium: boolean;
-  isFavorite: boolean;
-  rating : number;
-  previewImage : string;
-  description : string;
-  bedrooms : number;
-  goods : [string];
-  host : {name : string;
-    avatarUrl : string;
-    isPro : boolean;};
-  images : [string];
-  maxAdults : number;
+  offer : Offer;
 }
 
-function OfferWrapper(offer : OfferProps) :JSX.Element {
+function OfferWrapper({offer} : OfferProps) :JSX.Element {
   return (
     <div className="offer__wrapper">
-      {PremiumLabel (offer.isPremium)}
+      <PremiumLabel isPremium={offer.isPremium}/>
       <div className="offer__name-wrapper">
         <h1 className="offer__name">
           {offer.title}
         </h1>
-        {FavoriteLabel(offer.isFavorite)}
+        <FavoriteLabel isFavorite={offer.isFavorite}/>
       </div>
       <div className="offer__rating rating">
         <div className="offer__stars rating__stars">
@@ -94,10 +80,10 @@ function OfferWrapper(offer : OfferProps) :JSX.Element {
             <img className="offer__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar"/>
           </div>
           <span className="offer__user-name">
-            {offer.host.name}
+            {offer?.host?.name}
           </span>
           <span className="offer__user-status">
-            {offer.host.isPro}
+            {offer?.host?.isPro}
           </span>
         </div>
         <div className="offer__description">
@@ -125,7 +111,7 @@ function OfferWrapper(offer : OfferProps) :JSX.Element {
               <div className="reviews__rating rating">
                 <div className="reviews__stars rating__stars">
                   <span style={{width: '80%'}}></span>
-                  <span className="visually-hidden">Rating</span>
+                  <span className="visually-hidden">{offer.rating}</span>
                 </div>
               </div>
               <p className="reviews__text">

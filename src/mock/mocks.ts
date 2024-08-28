@@ -1,4 +1,43 @@
-const offersList = [
+export type City = {
+  name: string;
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
+}
+
+export type Location = {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+};
+
+
+export type Offer = {
+  id: string;
+  title?: string;
+  type?: string;
+  price?: number;
+  city?: City;
+  location?: Location;
+  isFavorite?: boolean;
+  isPremium?: boolean;
+  rating?: number;
+  previewImage?: string;
+  description?: string;
+  bedrooms?: number;
+  goods?: [string];
+  host?: {
+    name: string;
+    avatarUrl: string;
+    isPro: boolean;
+  };
+  images?: [string];
+  maxAdults?: number;
+}
+
+const offersList : Offer[] = [
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
     title: 'Beautiful & luxurious studio at great location',
@@ -67,10 +106,9 @@ const offersList = [
     isPremium: true,
     rating: 5,
     previewImage: 'https://url-to-image/image.png'
-  }
-];
+  }];
 
-const offer = [
+const offer : Offer =
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
     title: 'Beautiful & luxurious studio at great location',
@@ -107,7 +145,6 @@ const offer = [
       'https://url-to-image/image.png'
     ],
     maxAdults: 4
-  }
-];
+  };
 
 export { offersList, offer };

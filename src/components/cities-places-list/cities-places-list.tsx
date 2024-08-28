@@ -1,4 +1,4 @@
-function PremiumLabel(isPremium : boolean) {
+function PremiumLabel({isPremium} : {isPremium : boolean}) {
   if (isPremium) {
     return (
       <div className="place-card__mark">
@@ -8,7 +8,7 @@ function PremiumLabel(isPremium : boolean) {
   }
 }
 
-function FavoriteLabel(isFavorite : boolean) {
+function FavoriteLabel({isFavorite} : {isFavorite : boolean}) {
   if (isFavorite) {
     return (
       <button className="place-card__bookmark-button button" type="button">
@@ -38,7 +38,7 @@ type CityPlaceProps = {
 function CityPlace({className, offersList} : CityPlaceProps):JSX.Element {
   return (
     <article className={`${className} place-card`}>
-      {PremiumLabel(offersList.isPremium)}
+      <PremiumLabel isPremium={offersList.isPremium}/>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={offersList.previewImage} width="260" height="200" alt="Place image"/>
@@ -50,7 +50,7 @@ function CityPlace({className, offersList} : CityPlaceProps):JSX.Element {
             <b className="place-card__price-value">&euro;{offersList.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          {FavoriteLabel(offersList.isFavorite)}
+          <FavoriteLabel isFavorite={offersList.isFavorite}/>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
